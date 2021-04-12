@@ -36,3 +36,10 @@ class LocalConfig:
         json_file = LocalConfig.get_config("endpoints")
         return json_file[endpoint_name]
 
+    @staticmethod
+    def set_cursor(endpoint_name, cursor):
+        json_file = LocalConfig.__open_json()
+        with open("config.json", "w") as full_config:
+            json_file['endpoints'][endpoint_name]['cursor'] = cursor
+            print(json_file)
+            json.dump(json_file, full_config, indent=4)
