@@ -1,0 +1,19 @@
+{
+  "data_dir": "data",
+  "xml_dir": "data/xml",
+  "url": "https://api.arquivei.com.br/",
+  "endpoints": {
+    "nfe/received": {
+      "endpoint": "v1/nfe/received",
+      "verb": "get",
+      "limit": "50",
+      "cursor": 0
+    },
+    "nfe/events": {
+      "endpoint": "v2/nfe/events",
+      "verb": "get",
+      "limit": "0",
+      "cursor": 0
+    }
+  }
+}

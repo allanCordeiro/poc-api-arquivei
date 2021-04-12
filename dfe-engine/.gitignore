@@ -1,0 +1,16 @@
+.Python
+.env
+.idea
+__pycache__
+venv
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+data
+logs
