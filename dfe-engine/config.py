@@ -1,7 +1,7 @@
 import logging
 import json
 from decouple import config, UndefinedValueError
-logging.basicConfig(filename='logs/config.txt',
+logging.basicConfig(filename='logs/logs.txt',
                     level=logging.INFO,
                     format='%(asctime)s ::%(levelname)s :: %(message)s')
 

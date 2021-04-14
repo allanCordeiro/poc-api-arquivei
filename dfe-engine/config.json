@@ -5,7 +5,7 @@
     "endpoints": {
         "nfe/received": {
             "endpoint": "v1/nfe/received",
-            "xml_dir": "NFes",
+            "xml_dir": "nfes",
             "verb": "get",
             "limit": "50",
             "cursor": 35
@@ -13,6 +13,13 @@
         "nfe/events": {
             "endpoint": "v2/nfe/events",
             "xml_dir": "events",
+            "verb": "get",
+            "limit": "0",
+            "cursor": 0
+        },
+        "nfe/danfe": {
+            "endpoint": "v1/nfe/danfe",
+            "xml_dir": "danfes",
             "verb": "get",
             "limit": "0",
             "cursor": 0
