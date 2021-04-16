@@ -18,7 +18,11 @@ class ManageEndpoint(ArquiveiRequest):
         pass
 
     def get_doc_danfe(self):
-        pass
+        data = super().get_response()
+        danfe_data = {}
+        if data['status']['code'] == 200:
+            danfe_data[data['data']['access_key']] = self._base64_decode(data['data']['encoded_pdf'])
+        return danfe_data
 
     @staticmethod
     def _base64_decode(item):
