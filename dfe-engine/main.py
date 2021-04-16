@@ -1,5 +1,6 @@
 from config import LocalConfig
 from manageInterface import ManageEndpoint
+from filemanager import FileManager
 
 def poc():
     x_api_id = LocalConfig.get_credentials("x-api-id")
@@ -18,7 +19,9 @@ def poc():
     return response.get_received_list()
 
 if __name__ == '__main__':
-    print(poc())
+    #print(poc())
+    file = FileManager('data/xml', 'uma_chave_qualquer', 'xml', '<bla bla bla>')
+    print(file.create_file())
 
 
 
