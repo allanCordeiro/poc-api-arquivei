@@ -8,10 +8,14 @@ class ManageEndpoint(ArquiveiRequest):
 
     def get_received_list(self):
         data = super().get_response()
-        dfe_list = {}
+
+        dfe_list = []
         if data['status']['code'] == 200:
             for item in data['data']:
-                dfe_list[item['access_key']] = self._base64_decode(item['xml'])
+                dfe = {}
+                dfe['access_key'] = item['access_key']
+                dfe['value'] = self._base64_decode(item['xml'])
+                dfe_list.append(dfe)
         return dfe_list
 
     def get_doc_event(self):
