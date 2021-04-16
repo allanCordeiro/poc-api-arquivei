@@ -3,7 +3,7 @@ import logging
 
 
 class ArquiveiRequest:
-    def __init__(self, uri, endpoint, x_api_id, x_api_key, verb, limit=0, cursor=0, access_key=''):
+    def __init__(self, uri, endpoint, x_api_id, x_api_key, verb, limit=None, cursor=None, access_key=None):
         self._uri = uri
         self._endpoint = endpoint
         self._x_api_id = x_api_id
@@ -23,17 +23,17 @@ class ArquiveiRequest:
 
     def _get_endpoint(self):
         complete_url = f"{self._uri}{self._endpoint}"
-        if self._cursor != 0 :
-            complete_url = f"{complete_url}?cursor={self._cursor}"
-            if self._limit != 0:
-                complete_url = f"{complete_url}&limit={self._limit}"
-        if self._access_key != '':
-            complete_url = f"{complete_url}?access_key={self._access_key}"
-        print(complete_url)
+        if self._limit is not None:
+            complete_url += f"?limit={self._limit}"
+        if self._cursor is not None :
+            complete_url += f"&cursor={self._cursor}"
+        if self._access_key is not None:
+            complete_url += f"?access_key={self._access_key}"
         return complete_url
 
     def get_response(self):
         uri = self._get_endpoint()
+        print(uri)
         header = self._get_header()
         document: requests.Response
         if self._verb == "get":

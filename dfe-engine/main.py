@@ -24,6 +24,18 @@ def poc():
         print(nfe['access_key'])
         file = FileManager(xml_dir, nfe['access_key'], extension, nfe['value'])
         file.create_file()
+        danfe_endpoint =  LocalConfig.get_endpoint("nfe/danfe")
+        danfe_response = ManageEndpoint(
+            url,
+            danfe_endpoint["endpoint"],
+            x_api_id,
+            x_api_key,
+            danfe_endpoint["verb"],
+            access_key=nfe['access_key']
+        )
+        danfe = danfe_response.get_doc_danfe()
+        pdf_file = FileManager('data/danfe', nfe['access_key'], 'pdf', danfe[nfe['access_key']], 'pdf')
+        pdf_file.create_file()
 if __name__ == '__main__':
     nfes = poc()
 
