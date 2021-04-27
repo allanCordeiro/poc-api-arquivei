@@ -33,7 +33,6 @@ class ArquiveiRequest:
 
     def get_response(self):
         uri = self._get_endpoint()
-        print(uri)
         header = self._get_header()
         document: requests.Response
         if self._verb == "get":

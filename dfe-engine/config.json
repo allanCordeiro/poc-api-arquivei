@@ -1,11 +1,11 @@
 {
     "data_dir": "data",
-    "xml_dir": "data/xml",
+    "xml_dir": "data/nfe",
     "url": "https://api.arquivei.com.br/",
     "endpoints": {
         "nfe/received": {
             "endpoint": "v1/nfe/received",
-            "dir": "nfe",
+            "dir": "xml",
             "extension": "xml",
             "verb": "get",
             "limit": "50",
