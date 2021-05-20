@@ -38,6 +38,10 @@ def orchestrate():
         pdf_file = FileManager('data/nfe/danfe', nfe['access_key'], 'pdf', danfe[nfe['access_key']], 'pdf')
         pdf_file.create_file()
 
+    # colocar um try aqui aqui
+    # atualiza o cursor
+    current_cursor = int(nfe_received["cursor"]) + response.get_document_count()
+    LocalConfig.set_cursor('nfe/received', current_cursor)
 
 if __name__ == '__main__':
     orchestrate()

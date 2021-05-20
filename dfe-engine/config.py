@@ -41,5 +41,4 @@ class LocalConfig:
         json_file = LocalConfig.__open_json()
         with open("config.json", "w") as full_config:
             json_file['endpoints'][endpoint_name]['cursor'] = cursor
-            print(json_file)
             json.dump(json_file, full_config, indent=4)

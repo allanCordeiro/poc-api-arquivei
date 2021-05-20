@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 class FileManager:
     def __init__(self, file_dir, file_name, file_extension, file_content, type=None):
         self._dir = file_dir
