@@ -1,5 +1,6 @@
 import xmltodict
 
+
 file_path = 'files/nfe/xml/31210411606543001811550010000136601158604209.xml'
 
 with open(file_path, "r") as file:

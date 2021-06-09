@@ -27,5 +27,12 @@
             "limit": "0",
             "cursor": 0
         }
+    },
+    "key_parser": {
+        "nfe": {
+            "dt_issue": "[\"nfeProc\"][\"NFe\"][\"infNFe\"][\"ide\"][\"dhEmi\"]",
+            "issuer_code": "[\"nfeProc\"][\"NFe\"][\"infNFe\"][\"emit\"][\"CNPJ\"]",
+            "receipt_code": "[\"nfeProc\"][\"NFe\"][\"infNFe\"][\"dest\"][\"CNPJ\"]"
+        }
     }
 }
