@@ -1,6 +1,6 @@
 {
-    "data_dir": "data",
-    "xml_dir": "data/nfe",
+    "data_dir": "files",
+    "xml_dir": "files/nfe",
     "url": "https://api.arquivei.com.br/",
     "endpoints": {
         "nfe/received": {
