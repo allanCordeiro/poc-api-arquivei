@@ -1,5 +1,11 @@
 import xmltodict
+from config Import LocalConfig
 
+
+class Parser:
+    @staticmethod
+    def parse(doc_type, content):
+        pass
 
 file_path = 'files/nfe/xml/31210411606543001811550010000136601158604209.xml'
 
