@@ -1,6 +1,6 @@
-from config import LocalConfig
-from manageInterface import ManageEndpoint
-from filemanager import FileManager
+from appConfig import LocalConfig
+from services.manageInterface import ManageEndpoint
+from utils.filemanager import FileManager
 
 
 def orchestrate():

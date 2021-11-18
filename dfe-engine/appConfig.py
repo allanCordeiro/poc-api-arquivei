@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 from decouple import config, UndefinedValueError
 
+
 file_timestamp = datetime.now().strftime('%Y-%m-%d')
 logging.basicConfig(filename=f'files/logs/log_{file_timestamp}.log',
                     filemode='a',
@@ -37,7 +38,6 @@ class LocalConfig:
         except UndefinedValueError as e:
             logging.info('Endereco do ambiente nao encontrado. Verifique se o arquivo .env existe')
             logging.error(f'Exception -> {e}')
-
 
     @staticmethod
     def get_config(tag):

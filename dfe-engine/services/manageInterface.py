@@ -1,5 +1,5 @@
-from utils import Base64Conversion
-from apidata import ArquiveiRequest
+from utils import base64Conversion
+from .apidata import ArquiveiRequest
 
 
 class ManageEndpoint(ArquiveiRequest):
@@ -13,7 +13,7 @@ class ManageEndpoint(ArquiveiRequest):
         dfe_list = []
         if data['status']['code'] == 200:
             for item in data['data']:
-                dfe = {'access_key': item['access_key'], 'value': Base64Conversion.base64_decode(item['xml'])}
+                dfe = {'access_key': item['access_key'], 'value': base64Conversion.base64_decode(item['xml'])}
                 dfe_list.append(dfe)
         self._current_cursor = int(data['count'])
         return dfe_list
@@ -25,7 +25,7 @@ class ManageEndpoint(ArquiveiRequest):
         data = super().get_response()
         danfe_data = {}
         if data['status']['code'] == 200:
-            danfe_data[data['data']['access_key']] = Base64Conversion.base64_decode(data['data']['encoded_pdf'], 'pdf')
+            danfe_data[data['data']['access_key']] = base64Conversion.base64_decode(data['data']['encoded_pdf'], 'pdf')
         return danfe_data
 
     def get_document_count(self):
