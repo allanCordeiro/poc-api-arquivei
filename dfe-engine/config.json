@@ -1,7 +1,6 @@
 {
     "data_dir": "files",
     "files_dir": "files/data/nfe",
-    "url": "https://api.arquivei.com.br/",
     "endpoints": {
         "nfe/received": {
             "endpoint": "v1/nfe/received",
@@ -9,7 +8,7 @@
             "extension": "xml",
             "verb": "get",
             "limit": "50",
-            "cursor": 300
+            "cursor": 350
         },
         "nfe/events": {
             "endpoint": "v2/nfe/events",
