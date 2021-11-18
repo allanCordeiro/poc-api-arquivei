@@ -31,6 +31,15 @@ class LocalConfig:
             logging.error(f'Exception -> {e}')
 
     @staticmethod
+    def get_api_address():
+        try:
+            return config("api-address")
+        except UndefinedValueError as e:
+            logging.info('Endereco do ambiente nao encontrado. Verifique se o arquivo .env existe')
+            logging.error(f'Exception -> {e}')
+
+
+    @staticmethod
     def get_config(tag):
         json_file = LocalConfig.__open_json()
         return json_file[tag]

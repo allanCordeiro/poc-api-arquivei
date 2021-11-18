@@ -6,7 +6,8 @@ from filemanager import FileManager
 def orchestrate():
     x_api_id = LocalConfig.get_credentials("x-api-id")
     x_api_key = LocalConfig.get_credentials("x-api-key")
-    url = LocalConfig.get_config("url")
+    #url = LocalConfig.get_config("url")
+    url = LocalConfig.get_api_address()
     nfe_received = LocalConfig.get_endpoint("nfe/received")
     xml_dir = f"{LocalConfig.get_config('files_dir')}/{nfe_received['dir']}"
     extension = nfe_received['extension']

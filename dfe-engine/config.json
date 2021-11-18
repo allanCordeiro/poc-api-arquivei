@@ -9,7 +9,7 @@
             "extension": "xml",
             "verb": "get",
             "limit": "50",
-            "cursor": 250
+            "cursor": 300
         },
         "nfe/events": {
             "endpoint": "v2/nfe/events",
