@@ -1,4 +1,4 @@
-from pathlib import Path
+from utils import Directory
 
 
 class FileManager:
@@ -11,7 +11,7 @@ class FileManager:
         self._write_mode = 'w'
 
     def create_file(self):
-        self._check_dir()
+        Directory.check_dir(self._dir)
         if self._type is not None:
             self._write_mode = 'wb'
         path = f"{self._dir}/{self._name}.{self._extension}"
@@ -19,5 +19,3 @@ class FileManager:
             file.write(self._content)
         return path
 
-    def _check_dir(self):
-        Path(self._dir).mkdir(parents=True, exist_ok=True)
