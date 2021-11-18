@@ -1,7 +1,11 @@
 import logging
 import json
+from datetime import datetime
 from decouple import config, UndefinedValueError
-logging.basicConfig(filename='logs/logs.txt',
+
+file_timestamp = datetime.now().strftime('%Y-%m-%d')
+logging.basicConfig(filename=f'files/logs/log_{file_timestamp}.log',
+                    filemode='a',
                     level=logging.INFO,
                     format='%(asctime)s ::%(levelname)s :: %(message)s')
 

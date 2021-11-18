@@ -8,7 +8,7 @@ def orchestrate():
     x_api_key = LocalConfig.get_credentials("x-api-key")
     url = LocalConfig.get_config("url")
     nfe_received = LocalConfig.get_endpoint("nfe/received")
-    xml_dir = f"{LocalConfig.get_config('xml_dir')}/{nfe_received['dir']}"
+    xml_dir = f"{LocalConfig.get_config('files_dir')}/{nfe_received['dir']}"
     extension = nfe_received['extension']
     response = ManageEndpoint(
         url,
@@ -34,14 +34,17 @@ def orchestrate():
             danfe_endpoint["verb"],
             access_key=nfe['access_key']
         )
+        danfe_received = LocalConfig.get_endpoint("nfe/danfe")
+        danfe_dir = f"{LocalConfig.get_config('files_dir')}/{danfe_received['dir']}"
         danfe = danfe_response.get_doc_danfe()
-        pdf_file = FileManager('data/nfe/danfe', nfe['access_key'], 'pdf', danfe[nfe['access_key']], 'pdf')
+        pdf_file = FileManager(danfe_dir, nfe['access_key'], 'pdf', danfe[nfe['access_key']], 'pdf')
         pdf_file.create_file()
 
     # colocar um try aqui aqui
     # atualiza o cursor
     current_cursor = int(nfe_received["cursor"]) + response.get_document_count()
     LocalConfig.set_cursor('nfe/received', current_cursor)
+
 
 if __name__ == '__main__':
     orchestrate()
