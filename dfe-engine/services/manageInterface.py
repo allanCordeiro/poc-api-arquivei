@@ -11,6 +11,10 @@ class ManageEndpoint(ArquiveiRequest):
         self._previous_page_cursor = 0
 
     @property
+    def count(self):
+        return self._current_cursor
+
+    @property
     def next_page(self):
         return self._next_page_cursor
 
@@ -35,9 +39,12 @@ class ManageEndpoint(ArquiveiRequest):
 
     def get_doc_danfe(self):
         data = super().get_response()
-        danfe_data = {}
+        danfe_data = []
         if data['status']['code'] == 200:
-            danfe_data[data['data']['access_key']] = base64Conversion.base64_decode(data['data']['encoded_pdf'], 'pdf')
+            danfe_data.append({
+                'access_key': data['data']['access_key'],
+                'value': base64Conversion.base64_decode(data['data']['encoded_pdf'], 'pdf')
+            })
         return danfe_data
 
     def get_document_count(self):

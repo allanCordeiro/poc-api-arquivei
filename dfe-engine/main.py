@@ -15,6 +15,30 @@ def nfe():
     nfe_list = nfe_data.get_data_list()
     doc_handler = DocumentHandler(xml_dir, nfe_list, 'xml')
     doc_handler.create_file()
+    LocalConfig.set_cursor('nfe/received', nfe_data.next_page)
+
+    return nfe_list
+
+
+def danfe(nfe_list):
+    x_api_id = LocalConfig.get_credentials("x-api-id")
+    x_api_key = LocalConfig.get_credentials("x-api-key")
+    url = LocalConfig.get_api_address()
+    danfe_endpoint = LocalConfig.get_endpoint("nfe/danfe")
+    file_dir = f"{LocalConfig.get_config('files_dir')}/{danfe_endpoint['dir']}"
+    for nfe in nfe_list:
+        danfe_response = ManageEndpoint(
+            url,
+            danfe_endpoint["endpoint"],
+            x_api_id,
+            x_api_key,
+            danfe_endpoint["verb"],
+            access_key=nfe['access_key']
+        )
+        danfe = danfe_response.get_doc_danfe()
+        print(danfe)
+        doc_handler = DocumentHandler(file_dir, danfe, 'pdf', 'pdf')
+        doc_handler.create_file()
 
 
 def orchestrate():
@@ -62,7 +86,9 @@ def orchestrate():
 
 if __name__ == '__main__':
     # orchestrate()
-    nfe()
+    doc_list = nfe()
+    danfe(doc_list)
+
 
 
 

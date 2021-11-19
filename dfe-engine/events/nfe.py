@@ -8,6 +8,21 @@ class GetNfeData:
         self._url = url
         self._main_dir = main_dir
         self._doc_config = config
+        self._next_page = 0
+        self._previous_page = 0
+        self._count = 0
+
+    @property
+    def count(self):
+        return self._count
+
+    @property
+    def next_page(self):
+        return self._next_page
+
+    @property
+    def previous_page(self):
+        return self._previous_page
 
     def get_data_list(self):
         response = ManageEndpoint(
@@ -19,6 +34,11 @@ class GetNfeData:
             self._doc_config["limit"],
             self._doc_config["cursor"]
         )
-        return response.get_received_list()
+        data_list = response.get_received_list()
+        self._next_page = response.next_page
+        self._previous_page = response.previous_page
+        self._count = response.count
+
+        return data_list
 
 
