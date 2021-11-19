@@ -1,3 +1,4 @@
+from urllib.parse import urlparse, parse_qs
 from utils import base64Conversion
 from .apidata import ArquiveiRequest
 
@@ -6,6 +7,16 @@ class ManageEndpoint(ArquiveiRequest):
     def __init__(self, uri, endpoint, x_api_id, x_api_key, verb, limit=None, cursor=None, access_key=None):
         super().__init__(uri, endpoint, x_api_id, x_api_key, verb, limit, cursor, access_key)
         self._current_cursor = 0
+        self._next_page_cursor = 0
+        self._previous_page_cursor = 0
+
+    @property
+    def next_page(self):
+        return self._next_page_cursor
+
+    @property
+    def previous_page(self):
+        return self._previous_page_cursor
 
     def get_received_list(self):
         data = super().get_response()
@@ -15,7 +26,8 @@ class ManageEndpoint(ArquiveiRequest):
             for item in data['data']:
                 dfe = {'access_key': item['access_key'], 'value': base64Conversion.base64_decode(item['xml'])}
                 dfe_list.append(dfe)
-        self._current_cursor = int(data['count'])
+            self._current_cursor = int(data['count'])
+            self._get_page_cursors(data['page'])
         return dfe_list
 
     def get_doc_event(self):
@@ -31,5 +43,10 @@ class ManageEndpoint(ArquiveiRequest):
     def get_document_count(self):
         return self._current_cursor
 
+    def _get_page_cursors(self, page):
+        next = urlparse(page['next'])
+        previous = urlparse(page['previous'])
+        self._next_page_cursor = parse_qs(next.query)['cursor'][0]
+        self._previous_page_cursor = parse_qs(previous.query)['cursor'][0]
 
 
