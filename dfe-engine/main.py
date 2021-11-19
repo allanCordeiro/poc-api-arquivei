@@ -1,6 +1,20 @@
 from appConfig import LocalConfig
 from services.manageInterface import ManageEndpoint
 from utils.filemanager import FileManager
+from events.nfe import GetNfeData
+from events.documentHandler import DocumentHandler
+
+
+def nfe():
+    x_api_id = LocalConfig.get_credentials("x-api-id")
+    x_api_key = LocalConfig.get_credentials("x-api-key")
+    url = LocalConfig.get_api_address()
+    nfe_received = LocalConfig.get_endpoint("nfe/received")
+    xml_dir = f"{LocalConfig.get_config('files_dir')}/{nfe_received['dir']}"
+    nfe_data = GetNfeData(x_api_id, x_api_key, url, nfe_received, xml_dir)
+    nfe_list = nfe_data.get_data_list()
+    doc_handler = DocumentHandler(xml_dir, nfe_list, 'xml')
+    doc_handler.create_file()
 
 
 def orchestrate():
@@ -47,7 +61,8 @@ def orchestrate():
 
 
 if __name__ == '__main__':
-    orchestrate()
+    # orchestrate()
+    nfe()
 
 
 

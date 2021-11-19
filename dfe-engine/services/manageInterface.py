@@ -21,14 +21,14 @@ class ManageEndpoint(ArquiveiRequest):
     def get_received_list(self):
         data = super().get_response()
 
-        dfe_list = []
+        document_list = []
         if data['status']['code'] == 200:
             for item in data['data']:
-                dfe = {'access_key': item['access_key'], 'value': base64Conversion.base64_decode(item['xml'])}
-                dfe_list.append(dfe)
+                document = {'access_key': item['access_key'], 'value': base64Conversion.base64_decode(item['xml'])}
+                document_list.append(document)
             self._current_cursor = int(data['count'])
             self._get_page_cursors(data['page'])
-        return dfe_list
+        return document_list
 
     def get_doc_event(self):
         pass

@@ -4,7 +4,7 @@
     "endpoints": {
         "nfe/received": {
             "endpoint": "v1/nfe/received",
-            "dir": "xml",
+            "dir": "received/xml",
             "extension": "xml",
             "verb": "get",
             "limit": "50",
@@ -20,7 +20,7 @@
         },
         "nfe/danfe": {
             "endpoint": "v1/nfe/danfe",
-            "dir": "danfe",
+            "dir": "received/danfe",
             "extension": "pdf",
             "verb": "get",
             "limit": "0",
