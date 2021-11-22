@@ -1,12 +1,10 @@
-import logging
 import json
+from utils.logcapture import Logger
 from decouple import config, UndefinedValueError
-logging.basicConfig(filename='logs/logs.txt',
-                    level=logging.INFO,
-                    format='%(asctime)s ::%(levelname)s :: %(message)s')
 
 
 class LocalConfig:
+
     @staticmethod
     def __open_json():
         with open("config.json", "r") as json_file:
@@ -14,17 +12,27 @@ class LocalConfig:
 
     @staticmethod
     def get_credentials(credential_key):
+        logger = Logger()
         try:
             if credential_key == 'x-api-id':
                 return config('x-api-id')
             elif credential_key == 'x-api-key':
                 return config('x-api-key')
             else:
-                logging.error('Chave solicitada é inválida')
+                logger.log("Chave solicitada é inválida", "error")
                 return False
         except UndefinedValueError as e:
-            logging.info('A chave não foi encontrada. Verifique se o arquivo .env existe')
-            logging.error(f'Exception -> {e}')
+            logger.log('A chave não foi encontrada. Verifique se o arquivo .env existe', "info")
+            logger.log(f"Exception -> {e}", "error")
+
+    @staticmethod
+    def get_api_address():
+        logger = Logger()
+        try:
+            return config("api-address")
+        except UndefinedValueError as e:
+            logger.log('Endereco do ambiente nao encontrado. Verifique se o arquivo .env existe', 'info')
+            logger.log(f'Exception -> {e}', 'error')
 
     @staticmethod
     def get_config(tag):

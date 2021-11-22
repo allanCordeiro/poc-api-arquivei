@@ -1,15 +1,14 @@
 {
     "data_dir": "files",
-    "xml_dir": "files/nfe",
-    "url": "https://api.arquivei.com.br/",
+    "files_dir": "files/data/nfe",
     "endpoints": {
         "nfe/received": {
             "endpoint": "v1/nfe/received",
-            "dir": "xml",
+            "dir": "received/xml",
             "extension": "xml",
             "verb": "get",
             "limit": "50",
-            "cursor": 100
+            "cursor": "700"
         },
         "nfe/events": {
             "endpoint": "v2/nfe/events",
@@ -21,7 +20,7 @@
         },
         "nfe/danfe": {
             "endpoint": "v1/nfe/danfe",
-            "dir": "danfe",
+            "dir": "received/danfe",
             "extension": "pdf",
             "verb": "get",
             "limit": "0",

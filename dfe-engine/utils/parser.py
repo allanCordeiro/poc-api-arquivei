@@ -1,5 +1,4 @@
 import xmltodict
-from config Import LocalConfig
 
 
 class Parser:

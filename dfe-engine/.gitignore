@@ -12,5 +12,8 @@ venv
 pyvenv.cfg
 .venv
 pip-selfcheck.json
-files
-logs
+files/logs/*
+files/data/nfe/*
+files/data/dbase.db
+
+

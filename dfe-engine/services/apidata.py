@@ -25,7 +25,7 @@ class ArquiveiRequest:
         complete_url = f"{self._uri}{self._endpoint}"
         if self._limit is not None:
             complete_url += f"?limit={self._limit}"
-        if self._cursor is not None :
+        if self._cursor is not None:
             complete_url += f"&cursor={self._cursor}"
         if self._access_key is not None:
             complete_url += f"?access_key={self._access_key}"
