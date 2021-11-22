@@ -3,7 +3,6 @@ from utils.logcapture import Logger
 from decouple import config, UndefinedValueError
 
 
-
 class LocalConfig:
 
     @staticmethod
@@ -25,7 +24,6 @@ class LocalConfig:
         except UndefinedValueError as e:
             logger.log('A chave não foi encontrada. Verifique se o arquivo .env existe', "info")
             logger.log(f"Exception -> {e}", "error")
-
 
     @staticmethod
     def get_api_address():

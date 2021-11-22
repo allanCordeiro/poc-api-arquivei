@@ -15,11 +15,11 @@ class Logger:
         self.__logger = logging.getLogger('root')
 
     def log(self, msg, msg_type="error"):
-        if type == "error":
+        if msg_type == "error":
             self.__logger.error(msg)
-        elif type == "info":
+        elif msg_type == "info":
             self.__logger.info(msg)
         else:
-            self.__logger.log(msg)
+            self.__logger.info(msg)
 
 

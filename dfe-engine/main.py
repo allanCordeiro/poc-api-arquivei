@@ -1,11 +1,13 @@
 from appConfig import LocalConfig
 from services.manageInterface import ManageEndpoint
 from utils.filemanager import FileManager
+from utils.logcapture import Logger
 from events.nfe import GetNfeData
 from events.documentHandler import DocumentHandler
 
 
 def nfe():
+    logger = Logger()
     x_api_id = LocalConfig.get_credentials("x-api-id")
     x_api_key = LocalConfig.get_credentials("x-api-key")
     url = LocalConfig.get_api_address()
@@ -16,11 +18,13 @@ def nfe():
     doc_handler = DocumentHandler(xml_dir, nfe_list, 'xml')
     doc_handler.create_file()
     LocalConfig.set_cursor('nfe/received', nfe_data.next_page)
-
+    logger.log("NFE/received capturado com sucesso.")
+    logger.log(f"cursor da última captura: {nfe_data.next_page}")
     return nfe_list
 
 
 def danfe(nfe_list):
+    logger = Logger()
     x_api_id = LocalConfig.get_credentials("x-api-id")
     x_api_key = LocalConfig.get_credentials("x-api-key")
     url = LocalConfig.get_api_address()
@@ -36,7 +40,6 @@ def danfe(nfe_list):
             access_key=nfe['access_key']
         )
         danfe = danfe_response.get_doc_danfe()
-        print(danfe)
         doc_handler = DocumentHandler(file_dir, danfe, 'pdf', 'pdf')
         doc_handler.create_file()
 
