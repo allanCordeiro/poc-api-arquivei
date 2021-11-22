@@ -39,6 +39,7 @@ $ pip install -r requirements.txt
 Após, crie um arquivo .env. É neste arquivo que serão inseridas as credenciais de acesso da API. No seguinte modelo:
 
 ```
+api-address=https://localhost.arquivei.com.br
 x-api-id=hash-do-id-das-credenciais
 x-api-key=hash-do-key-das-credenciais
 ```
@@ -83,6 +84,16 @@ config.json
 }
 ```
 
+### Changelog
+#### nov/2021 (V111)
+- Estrutura de diretórios revisada;
+- Erro na geração de logs de erro corrigidos;
+- Definição do endereço das APIs agora é realizada no arquivo de ambiente (.env) e não mais no arquivo config.json
+- Biblioteca de utils para eventual função utilizada em mais de uma classe
+- Aplicação agora utiliza modelo em packages
+- Conceito de cursor por paginação foi aplicado, resolvendo a questão do cursor 'aleatório' caso sejam realizadas consultas por CNPJ
+- Sistema de gestão de logs
+- Criação do model de banco de dados para fases futuras
 ### Backlog
 
 - Download de eventos da NFe;
@@ -91,3 +102,4 @@ config.json
 - Download de dados de NFSes;
 - Upload de NFes;
 - Upload de NFSes (manual, proposta via OCR)
+- Manifestação de documentos
